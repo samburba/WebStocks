@@ -1,0 +1,22 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="en" dir="ltr">
+<html class="no-js" lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <!-- CSS Sheets -->
+  <link rel="stylesheet" href="{% static "css/vendor/bootstrap.min.css" %}">
+  <!-- End CSS -->
+</head>
+<body>
+  {% block content %}{% endblock %}
+  <!-- JS -->
+  <script src="{% static "js/vendor/jquery-3.2.1.min.js" %}"></script>
+  <!-- script src="{% static "js/vendor/bootstrap.js" %}"></script> -->
+  <!-- End JS -->
+  {% block scripts %}{% endblock %}
+</body>
+</html>
