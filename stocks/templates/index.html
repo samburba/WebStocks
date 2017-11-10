@@ -9,7 +9,7 @@
    	<div class="row">
 
    		<div class="logo">
-	         <a href="index.html">Lhander</a>
+	         <a href="index">SmileAI</a>
 	      </div>
 
 	   	<nav id="main-nav-wrap">
@@ -18,8 +18,8 @@
 					<li><a class="smoothscroll"  href="#process" title="">About</a></li>
 					<li><a class="smoothscroll"  href="#features" title="">Features</a></li>
 					<li><a class="smoothscroll"  href="#faq" title="">FAQ</a></li>
-					<li class="highlight with-sep"><a href="signup.html" title="">Sign Up</a></li>
-          <li class="highlight with-sep"><a href="login.html" title="">Log In</a></li>
+					<li class="highlight with-sep"><a href="signup" title="">Sign Up</a></li>
+          <li class="highlight with-sep"><a href="login" title="">Log In</a></li>
 				</ul>
 			</nav>
 
@@ -40,7 +40,7 @@
    			<div class="col-twelve">
 
 	   			<div class='video-link'>
-	   				<a href="#video-popup"><img src="images/play-button.png" alt=""></a>
+	   				<a href="#video-popup"><img src="{% static "images/play-button.png" %}" alt=""></a>
 	   			</div>
 
 	   			<h5>Hello welcome to AI Stock Bot.</h5>
@@ -78,11 +78,11 @@
      ================================================== -->
      <div class="col span1of2 middle brain-container">
      <div class="brain-hightlights">
-           <img alt="01-brain-glow" class="brain-hightlight" src="images/brain/01-brain_glow-52fcb0e4.png">
-           <img alt="02-brain-glow" class="brain-hightlight" src="images/brain/02-brain_glow-1b301710.png">
-           <img alt="03-brain-glow" class="brain-hightlight" src="images/brain/03-brain_glow-f9d921f1.png">
-           <img alt="04-brain-glow" class="brain-hightlight" src="images/brain/04-brain_glow-e6c7f1d3.png">
-           <img alt="05-brain-glow" class="brain-hightlight" src="images/brain/05-brain_glow-a759f33e.png">
+           <img alt="01-brain-glow" class="brain-hightlight" src="{% static "images/brain/01-brain_glow-52fcb0e4.png"%}">
+           <img alt="02-brain-glow" class="brain-hightlight" src="{% static "images/brain/02-brain_glow-1b301710.png"%}">
+           <img alt="03-brain-glow" class="brain-hightlight" src="{% static "images/brain/03-brain_glow-f9d921f1.png"%}">
+           <img alt="04-brain-glow" class="brain-hightlight" src="{% static "images/brain/04-brain_glow-e6c7f1d3.png"%}">
+           <img alt="05-brain-glow" class="brain-hightlight" src="{% static "images/brain/05-brain_glow-a759f33e.png"%}">
      </div></div>     <!-- brain  -->
 
    	<div class="row section-intro-brain">
@@ -375,13 +375,4 @@
       </div>
 
    </footer>
-
-   <div id="preloader">
-    	<div id="loader"></div>
-   </div>
-
-   <!-- Java Script
-   ================================================== -->
-
-
 {% endblock %}

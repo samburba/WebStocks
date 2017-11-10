@@ -1,35 +1,53 @@
 <!doctype html>
 {% load static %}
 <html class="no-js" lang="en" dir="ltr">
-<html class="no-js" lang="en" dir="ltr">
+
 <head>
-  <meta charset="utf-8">
+
+  <!--- basic page needs
+  ================================================== -->
+  <meta charset="UTF-8">
+
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Long Nguyen">
+  <meta name="description" content="SmileAI WebSite">
+
   <title>{% block title %}{% endblock %}</title>
-  <!-- CSS Sheets -->
-  <!-- <link rel="stylesheet" href="{% static "css/vendor/bootstrap.min.css" %}"> -->
+  <!-- CSS
+   ================================================== -->
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
   <link rel="stylesheet" href="{% static "css/base.css" %}">
   <link rel="stylesheet" href="{% static "css/main.css" %}">
   <link rel="stylesheet" href="{% static "css/vendor.css" %}">
   <link rel="stylesheet" href="{% static "css/brain.css" %}">
-  <!--<link href="css/brain.css" rel="stylesheet" type="text/css">-->
-<!-- <link rel="icon" type="image/png" href="favicon.png">-->
+
 
   <!-- End CSS -->
+
+  <!-- favicons
+ ================================================== -->
+ <link rel="icon" type="image/png" href="favicon.png">
+
 </head>
-<body>
+<body id="top">
   {% block content %}{% endblock %}
-  <!-- JS -->
-  <!-- <script src="{% static "js/vendor/jquery-3.2.1.min.js" %}"></script> -->
+
+  <!-- Java Script
+  ================================================== -->
   <script src="{% static "js/static\js\jquery-migrate-1.2.1.min.js" %}"></script>
   <script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
   <script src="{% static "js/modernizr.js" %}"></script>
   <script src="{% static "js/plugins.js" %}"></script>
   <script src="{% static "js/main.js" %}"></script>
-
-  <!-- script src="{% static "js/vendor/bootstrap.js" %}"></script> -->
   <!-- End JS -->
+
+
+  <div id="preloader">
+     <div id="loader"></div>
+  </div>
   {% block scripts %}{% endblock %}
 </body>
 </html>
