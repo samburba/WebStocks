@@ -4,23 +4,22 @@
 {% block content %}
 
 <!DOCTYPE html>
-
-<head>
 <link rel="stylesheet" href="{% static "css/signup.css" %}">
-</head>
+
+
   <!-- header
    ================================================== -->
    <header>
     <div class="row">
       <div class="logo">
-           <a href="../index">SmileAI</a>
+           <a href="../">SmileAI</a>
         </div>
       <nav id="main-nav-wrap">
         <ul class="main-navigation">
-          <li><a href="../index#intro" title="">Home</a></li>
-          <li><a href="../index#process" title="">Process</a></li>
-          <li><a href="../indexl#features" title="">Features</a></li>
-          <li><a href="../index#faq" title="">FAQ</a></li>
+          <li><a href="../#intro" title="">Home</a></li>
+          <li><a href="../#process" title="">Process</a></li>
+          <li><a href="../#features" title="">Features</a></li>
+          <li><a href="../#faq" title="">FAQ</a></li>
           <li class="current highlight with-sep"><a href="#loginsection" title="">Sign Up</a></li>
           <li class="highlight with-sep"><a href="../login" title="">Log In</a></li>
         </ul>
@@ -172,5 +171,9 @@
       	</div> <!-- /footer-bottom -->
       </div>
    </footer>
+
+ <!-- Java Script
+ ================================================== -->
+ <script src="{% static "js/signup.js" %}"></script>
 
 {% endblock %}
