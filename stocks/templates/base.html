@@ -36,7 +36,9 @@
 <body id="top">
 
   {% block content %}{% endblock %}
-
+  <div id="preloader">
+     <div id="loader"></div>
+  </div>
   <!-- footer
   ================================================== -->
   <footer>
@@ -73,7 +75,9 @@
            <h4>Special thanks to</h4>
            <p>Professor <a href="https://www.bryancdixon.com/contact"> Bryan Dixon </a><br>
               Professor <a href="https://www.csuchico.edu/csci/faculty-staff/harris-elena.shtml"> Elena Harris </a><br>
-              Website Credit <a href="http://www.Styleshout.com"> Styleshout</a>  </p>
+              Website Credit <a href="http://www.Styleshout.com"> Styleshout</a> and <a href="http://www.codepen.io">  Codepen </a>
+
+            </p>
          </div> <!-- /special thanks -->
 
        </div> <!-- /row -->
@@ -104,12 +108,6 @@
   <script src="{% static "js/face.js" %}"></script>
   <script type="text/javascript" src="{% static "js/disable_copy.js" %}" ></script>
   <!-- End JS -->
-
-
-
-  <div id="preloader">
-     <div id="loader"></div>
-  </div>
   {% block scripts %}{% endblock %}
 </body>
 </html>
