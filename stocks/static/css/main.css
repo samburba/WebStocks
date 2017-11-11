@@ -1612,50 +1612,7 @@ footer ul li {
 	margin: -.6rem 0 2.1rem -.3rem;
 	display: block;
 }
-.footer-main .footer-subscribe p {
-	margin-bottom: 1.2rem;
-}
-.footer-main .footer-subscribe .subscribe-form #mc-form {
-	padding: 0;
-}
-.footer-main .footer-subscribe .subscribe-form input[type="email"] {
-	padding: .6rem 2rem;
-	border-radius: 5px;
-	background: #232933;
-	border: none;
-	width: 100%;
-	font-family: "raleway-regular", sans-serif;
-	color: #bababa;
-	margin-bottom: 1.8rem;
-}
-.footer-main .footer-subscribe .subscribe-form input[type="submit"] {
-	display: none;
-}
-.footer-main .footer-subscribe .subscribe-form .subscribe-message {
-	font-family: "raleway-bold", sans-serif;
-	color: #FFFFFF;
-}
-.footer-main .footer-subscribe .subscribe-form .subscribe-message i {
-	color: #ff7b29;
-	margin-right: 5px;
-}
-.footer-main .footer-subscribe .subscribe-form ::-webkit-input-placeholder {
-	color: #545454;
-}
-.footer-main .footer-subscribe .subscribe-form :-moz-placeholder {
-	/* Firefox 18- */
-	color: #545454;
-}
-.footer-main .footer-subscribe .subscribe-form ::-moz-placeholder {
-	/* Firefox 19+ */
-	color: #545454;
-}
-.footer-main .footer-subscribe .subscribe-form :-ms-input-placeholder {
-	color: #545454;
-}
-.footer-main .footer-subscribe .subscribe-form .placeholder {
-	color: #545454 !important;
-}
+
 .footer-bottom {
 	margin-top: 3rem;
 	text-align: center;
