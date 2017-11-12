@@ -2,9 +2,13 @@
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<!--
-<link rel="stylesheet" href="{% static "css/signup.css" %}">
 
+<!DOCTYPE html>
+
+
+
+  <!-- header
+   ================================================== -->
    <header>
     <div class="row">
       <div class="logo">
@@ -13,98 +17,45 @@
       <nav id="main-nav-wrap">
         <ul class="main-navigation">
           <li><a href="../#intro" title="">Home</a></li>
-					<li><a href="../#process" title="">Process</a></li>
-					<li><a href="../#features" title="">Features</a></li>
-					<li><a href="../#faq" title="">FAQ</a></li>
-          <li class="highlight with-sep"><a href="../signup" title="">Sign Up</a></li>
-          <li class="current highlight with-sep"><a href="#loginsection" title="">Log In</a></li>
-
+          <li><a href="../#process" title="">Process</a></li>
+          <li><a href="../#features" title="">Features</a></li>
+          <li><a href="../#faq" title="">FAQ</a></li>
+          <li class="current highlight with-sep"><a href="../signup" title="">Sign Up</a></li>
+          <li class="highlight with-sep"><a href="../login" title="">Log In</a></li>
         </ul>
       </nav>
       <a class="menu-toggle" href="#"><span>Menu</span></a>
     </div>
-   </header>
+   </header> <!-- /header -->
+
 
   <section id="loginsection">
   <div class="form">
-      <ul class="tab-group">
-        <li class="tab "><a href="#signup">Sign Up</a></li>
-        <li class="tab active"><a href="#login">Log In</a></li>
-      </ul>
-    -->
-      <form action="{% url 'login' %}" method="post">
+    <div class="tab-content">
+        <div id="login"></div>
+        <h1>Log In</h1>
+        <form action="{% url 'login' %}" method="post">
+
           {% csrf_token %}
-
           {{ form.errors }}
-          <label>{{ form.username.label_tag }}</label>
+          <div class="field-wrap">
+            <label>
+              Username<span class="req">*</span>
+            </label>
           {{ form.username }}
-          <label>{{ form.password.label_tag }}</label>
+          <!-- <label>{{ form.username.label_tag }}</label>
+          {{ form.username }} -->
+          <label>
+            Password<span class="req">*</span>
+          </label>
           {{ form.password }}
+          <!-- <label>{{ form.password.label_tag }}</label>
+          {{ form.password }} -->
           <input type="submit" class="button expanded" value="Login" />
-          <a href="/register/" class="secondary button expanded">Register</a>
           <input type="hidden" name="next" value="/" />
-      </form> <!--
-      <div class="tab-content">
-        <div id="login">
-          <h1>Welcome Back!</h1>
-          <form  action="/" method="post">
-            {% csrf_token %}
-{{ form.as_p }}
-
-              <label> Email Address<span class="req">*</span>   </label>
-              <input type="email"required autocomplete="off"/>
-            </div>
-
-            <div class="field-wrap">
-              <label> Password<span class="req">*</span> </label>
-              <input type="password" required autocomplete="off"/>
-            </div>
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
-          <button class="button button-block"/>Log In</button>
-          </form>
-        </div>
-
-        <div id="signup">
-          <h1>Sign Up for Free</h1>
-          <form action="/" method="post">
-
-         <div class="field-wrap">
-            <label> Username<span class="req">*</span> </label>
-            <input type="text"required autocomplete="off"/>
-          </div>
-
-          <div class="field-wrap">
-            <label> Email Address<span class="req">*</span>  </label>
-            <input type="email"required autocomplete="off"/>
-          </div>
-
-          <div class="field-wrap">
-            <label> Password<span class="req">*</span> </label>
-            <input type="password"required autocomplete="off"/>
-          </div>
-
-          <div class="field-wrap">
-            <label> Retype Password<span class="req">*</span> </label>
-            <input type="password"required autocomplete="off"/>
-          </div>
-
-
-          <div class="top-row">
-            <div class="field-wrap">
-              <label> First Name </label>
-              <input type="text" required autocomplete="off" />
-            </div>
-
-            <div class="field-wrap">
-              <label>  Last Name  </label>
-              <input type="text"required autocomplete="off"/>
-            </div>
-          </div>
-          <button type="submit" class="button button-block"/>Get Started</button>
-          </form>
-        </div>
+      </form>
       </div>
-</div>
-</section>-->
+  </div> <!-- /form -->
+</section><!-- /signup -->
 
 {% endblock %}

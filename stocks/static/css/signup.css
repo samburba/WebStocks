@@ -12,6 +12,7 @@ a {
   -webkit-transition: .5s ease;
   transition: .5s ease;
 }
+
 a:hover {
   color: #179b77;
 }
@@ -72,7 +73,8 @@ h1 {
 label {
   position: absolute;
   -webkit-transform: translateY(100px);
-          transform: translateY(15px);
+          transform: translateY(15px) translateX(0px);
+
 
   left: 22px;
   -webkit-transition: all 0.25s ease;

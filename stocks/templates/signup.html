@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+
+  <!-- header
+   ================================================== -->
+   <header>
+    <div class="row">
+      <div class="logo">
+           <a href="../">SmileAI</a>
+        </div>
+      <nav id="main-nav-wrap">
+        <ul class="main-navigation">
+          <li><a href="../#intro" title="">Home</a></li>
+          <li><a href="../#process" title="">Process</a></li>
+          <li><a href="../#features" title="">Features</a></li>
+          <li><a href="../#faq" title="">FAQ</a></li>
+          <li class="current highlight with-sep"><a href="../signup" title="">Sign Up</a></li>
+          <li class="highlight with-sep"><a href="../login" title="">Log In</a></li>
+        </ul>
+      </nav>
+      <a class="menu-toggle" href="#"><span>Menu</span></a>
+    </div>
+   </header> <!-- /header -->
+
+   <!-- sign_up
+    ================================================== -->
+  <section id="loginsection">
+  <div class="form">
+      <div class="tab-content">
+        <div id="login">
+          <h1>Sign Up</h1>
+          <form action="/signup/" method="post">
+            {% csrf_token %}
+            {{ form.errors }}
+
+            <div class="field-wrap">
+              <label>
+                Username<span class="req">*</span>
+              </label>
+              <!-- {{form.username}} -->
+              {{form.add_error(username) }}
+              <!-- {{form.username.label_tag}} -->
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                Email Address<span class="req">*</span>
+              </label>
+              {{ form.email }}
+
+              <!-- {{ form.email.label_tag }} -->
+
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                Password<span class="req">*</span>
+              </label>
+              {{ form.password1 }}
+              <!-- {{ form.password1.label_tag }} -->
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                Retype Password<span class="req">*</span>
+              </label>
+              {{ form.password2 }}
+              <!-- {{ form.password2.label_tag }} -->
+            </div>
+
+            <input type="submit" class="button expanded" value="Register" />
+          </form>
+        </div>
+        <div id="login"></div>
+      </div><!-- tab-content -->
+</div> <!-- /form -->
+</section><!-- /signup -->
+
+{% endblock %}
