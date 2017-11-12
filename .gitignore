@@ -7,3 +7,4 @@ stocks/migrations/__pycache__/
 
 # ignore .pyc files
 *.pyc
+*.cpython-35.pyc
