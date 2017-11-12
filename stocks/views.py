@@ -15,26 +15,10 @@ def signup(request):
     if request.method == 'POST':
         form = registration_form(request.POST)
         if form.is_valid():
-            form.save(commit=True)
+            user = form.save(commit=True)
+            login(request, user)
             return redirect("/")
     else:
         form = registration_form()
     context = {"form":form}
     return render(request,"signup.html",context)
-    #
-    # if request.method == 'POST':
-    #     username = request.POST['username']
-    #     password = request.POST['password']
-    #     user = authenticate(request, username=username, password=password)
-    #     if user is not None:
-    #         login(request, user)
-    #         return redirect("index")
-    #     else:
-    #         context = {'ERROR': True}
-    #         return render(request, "signup.html")
-    # context = {}
-    # return render(request, "signup.html", context)
-
-def login(request):
-    context = {'Title':TITLE}
-    return render(request, "login.html", context)
