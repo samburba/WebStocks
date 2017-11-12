@@ -19,7 +19,9 @@
         <li><a class="smoothscroll"  href="#features" title="">Features</a></li>
         <li><a class="smoothscroll"  href="#faq" title="">FAQ</a></li>
         {% if user.is_authenticated %}
-        Hi {{ user.name }}
+        Hi {{ user.get_username }}
+          <li class="highlight with-sep"><a href="logout" title="">Logout</a></li>
+
         {% else %}
         <li class="highlight with-sep"><a href="signup" title="">Sign Up</a></li>
         <li class="highlight with-sep"><a href="login" title="">Log In</a></li>

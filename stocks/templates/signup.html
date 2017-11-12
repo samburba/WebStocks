@@ -42,9 +42,20 @@
       <div class="tab-content">
         <div id="signup">
           <h1>Sign Up for Free</h1>
-          <form action="/" method="post">
-            {% csrf_token %}
-          {{ form.as_p}}
+          <form action="/signup/" method="post">
+    {% csrf_token %}
+    <h4 class="text-center">Register</h4>
+    {{ form.errors }}
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    {{ form.email.label_tag }}
+    {{ form.email }}
+    {{ form.password1.label_tag }}
+    {{ form.password1 }}
+    {{ form.password2.label_tag }}
+    {{ form.password2 }}
+    <input type="submit" class="button expanded" value="Register" />
+</form>
 
           <!-- <div class="field-wrap">
             <label>
@@ -85,8 +96,7 @@
             </div>
           </div>
         -->
-          <button type="submit" class="button button-block"/>Get Started</button>
-          </form>
+
         </div>
 
         <div id="login">
@@ -111,5 +121,5 @@
 </section><!-- /signup -->
 
 
-  
+
 {% endblock %}
