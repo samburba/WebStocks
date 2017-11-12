@@ -92,8 +92,8 @@ body .toots .toot:before {
   height: 100%;
   border-radius: 500%;
   background: #a02163;
-  -webkit-animation: burst 5s ease-out infinite;
-          animation: burst 5s ease-out infinite;
+  -webkit-animation: burst 3s ease-out infinite;
+          animation: burst 3s ease-out infinite;
 }
 @-webkit-keyframes burst {
   0% {
@@ -146,8 +146,8 @@ body .poo {
   width: 300px;
 }
 body .top, body .mid, body .bottom {
-  -webkit-animation: swell 5s ease-in-out infinite;
-          animation: swell 5s ease-in-out infinite;
+  -webkit-animation: swell 3s ease-in-out infinite;
+          animation: swell 3s ease-in-out infinite;
   -webkit-transform-origin: 50% 100%;
           transform-origin: 50% 100%;
 }
@@ -298,8 +298,8 @@ body .eyes .eye, body .mouth .eye {
   left: 55px;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-animation: rise 5s ease-in-out infinite;
-          animation: rise 5s ease-in-out infinite;
+  -webkit-animation: rise 3s ease-in-out infinite;
+          animation: rise 3s ease-in-out infinite;
 }
 @-webkit-keyframes rise {
   0% {
@@ -384,8 +384,8 @@ body .eyes .eye:before, body .mouth .eye:before {
   height: 60px;
   border-radius: 500%;
   background: #000000;
-  -webkit-animation: oface3 5s ease-in-out infinite;
-          animation: oface3 5s ease-in-out infinite;
+  -webkit-animation: oface3 3s ease-in-out infinite;
+          animation: oface3 3s ease-in-out infinite;
 }
 @-webkit-keyframes oface3 {
   0% {
@@ -466,8 +466,8 @@ body .eyes:before {
   background: #000000;
   bottom: -34px;
   border-radius: 100%;
-  -webkit-animation: oface 5s ease-in-out infinite;
-          animation: oface 5s ease-in-out infinite;
+  -webkit-animation: oface 3s ease-in-out infinite;
+          animation: oface 3s ease-in-out infinite;
   -webkit-transform-origin: 50% 90%;
           transform-origin: 50% 90%;
 }
@@ -538,8 +538,8 @@ body .mouth {
   border-radius: 500%;
   border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000000 rgba(255, 255, 255, 0);
   margin-top: 45px;
-  -webkit-animation: oface2 5s ease-in-out infinite;
-          animation: oface2 5s ease-in-out infinite;
+  -webkit-animation: oface2 3s ease-in-out infinite;
+          animation: oface2 3s ease-in-out infinite;
   -webkit-transform-origin: 50% 0%;
           transform-origin: 50% 0%;
 }
