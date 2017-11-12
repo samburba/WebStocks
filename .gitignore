@@ -1,0 +1,9 @@
+
+# ignore directories
+stocks/__pycache__/
+web/__pycache__/
+stocks/migrations/__pycache__/
+
+
+# ignore .pyc files
+*.pyc
