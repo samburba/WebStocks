@@ -37,5 +37,8 @@ def dashboard(request):
 
 @login_required
 def view_stock(request, slug):
-    context = {"stock":get_object_or_404(Stocks, slug=name)}
-    return render_to_response("stock.html", context)
+    stock = get_object_or_404(Stocks, slug=slug)
+    info = Stock(stock.slug)
+    context = {'s_name' : stock.slug, 's_full_name' : stock.full_name,
+     's_price':info.get_price(), 's_difference':info.get_percent_difference()}
+    return render_to_response("UI/stock.html", context)

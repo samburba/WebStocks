@@ -20,7 +20,7 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 class Stocks(models.Model):
-    name = models.SlugField(max_length=5)
+    slug = models.SlugField(max_length=5)
     full_name = models.CharField(max_length=64)
     @permalink
     def get_absolute_url(self):
