@@ -19,10 +19,10 @@ from django.contrib.auth import views
 from stocks.forms import log_in_form
 
 urlpatterns = [
+    url(r'', include('stocks.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'login/', views.login, {
         'template_name':'login.html', 'authentication_form':log_in_form},
          name="login"),
     url(r'logout/$', views.logout,{'next_page':'/'}),
-    url(r'', include('stocks.urls')),
-]
+    ]

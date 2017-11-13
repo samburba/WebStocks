@@ -21,4 +21,8 @@ def signup(request):
     else:
         form = registration_form()
     context = {"form":form}
-    return render(request,"signup.html",context)
+    return render(request,"signup.html", context)
+
+def dashboard(request):
+    context = {}
+    return render(request, "UI/dashboard.html", context)
