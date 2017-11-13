@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
+from stocks.models import Stocks
 from stocks.forms import registration_form
 from stocks.stocks import Stock
 
@@ -31,5 +32,10 @@ def signup(request):
 @login_required
 def dashboard(request):
     stocks = [Stock("GOOGL"), Stock("AAPL"), Stock("MSFT")]
-    context = {'stocks':stocks}
+    context = {'user_stocks':stocks}
     return render(request, "UI/dashboard.html", context)
+
+@login_required
+def view_stock(request, slug):
+    context = {"stock":get_object_or_404(Stocks, slug=name)}
+    return render_to_response("stock.html", context)
