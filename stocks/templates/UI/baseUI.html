@@ -1,3 +1,5 @@
+<!doctype html>
+{% load static %}
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="{% static "images/UI/apple-icon.png" %}">
@@ -15,9 +17,62 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
-
-
 <body>
+<div class="wrapper">
+  <div class="sidebar" data-color="red" data-image="{% static "images/UI/sidebar-1.jpg" %}">
+  <div class="logo"> <p> &nbsp; </p></div>
+  <div class="logo">
+    <div class="card card-profile">
+      <div class="card-avatar">
+        <a href="#pablo">
+          <img class="img" src="{% static "images/UI/faces/default.jpg" %}" />
+        </a>
+      </div>
+      <h6 class="category text-gray">Welcome</h6>
+      <h4 class="card-title">{{ user.get_username }}</h4>
+      <h4 class="card-title">Balance: ${{ user.profile.purse }} </h4>
+    </div>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="active">
+        <a href="dashboard.html">
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li>
+        <a href="./user.html">
+          <i class="material-icons">person</i>
+          <p>User Profile</p>
+        </a>
+      </li>
+      <li>
+        <a href="./table.html">
+          <i class="material-icons">content_paste</i>
+          <p>Table List</p>
+        </a>
+      </li>
+      <li>
+        <a href="./typography.html">
+          <i class="material-icons">library_books</i>
+          <p>Typography</p>
+        </a>
+      </li>
+      <li>
+        <a href="./notifications.html">
+          <i class="material-icons text-gray">notifications</i>
+          <p>Notifications</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+  {% block content %}{% endblock %}
+
 
 <!--   Core JS Files   -->
 <script src="{% static "js/UI/jquery-3.2.1.min.js" %}"></script>
@@ -34,5 +89,5 @@
 
 <!-- Material Dashboard javascript methods -->
 <script src="{% static "js/UI/material-dashboard.js" %}"></script>
-
-</  body>
+</div>
+</body>

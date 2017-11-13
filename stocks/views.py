@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from stocks.forms import registration_form
+from stocks.stocks import Stock
 
 # Create your views here.
 
@@ -29,5 +30,6 @@ def signup(request):
 
 @login_required
 def dashboard(request):
-    context = {}
+    stocks = [Stock("GOOGL"), Stock("AAPL"), Stock("MSFT")]
+    context = {'stocks':stocks}
     return render(request, "UI/dashboard.html", context)
