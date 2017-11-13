@@ -22,6 +22,7 @@
 
         {% if user.is_authenticated %}
           <li class="highlight with-sep"><a>Hi {{ user.get_username }}</a></li>
+          <li class="highlight with-sep"><a href="dashboard" title=""><i class="icon-file"></i>Dashboard</a></li>
           <li class="highlight with-sep"><a href="logout" title="">Logout</a></li>
 
         {% else %}
@@ -50,6 +51,7 @@
         <!-- <div class='video-link'>
           <a href="#video-popup"><img src="{% static "images/play-button.png" %}" alt=""></a>
         </div> -->
+
 
 
         <h5>Hello welcome to AI Stock Bot.</h5>
