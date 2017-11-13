@@ -33,12 +33,14 @@
               <div class="logo">
 
             <div class="card card-profile">
+              <div class="card-avatar">
+                  <a href="#pablo">
+                     <img class="img" src="{% static "images/UI/faces/default.jpg" %}" />
+                  </a>
+              </div>
                   <h6 class="category text-gray">Welcome</h6>
                     <h4 class="card-title">{{ user.get_username }}</h4>
-<<<<<<< HEAD
-                    <h4 class="card-title"> $ {{ user.profile.purse }} </h4>
-=======
->>>>>>> 7420546f10c856352a6b25d74e6f3970eacd6c9f
+                    <h4 class="card-title">Balance: ${{ user.profile.purse }} </h4>
                 </div>
             </div>
 
