@@ -6,7 +6,8 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    stocks = models.ManyToManyField('stocks.Stock', related_name='stock+', blank=True)
+    #stocks = models.ManyToManyField('stocks.Stock', related_name='stock+', blank=True)
+    stocks = models.ManyToManyField('Owned_Stock', related_name='stocks', blank=True)
     purse = models.DecimalField(max_digits=64, decimal_places=2, blank=True, null=True)
 
 @receiver(post_save, sender=User)
@@ -25,3 +26,10 @@ class Stock(models.Model):
     @permalink
     def get_absolute_url(self):
         return ('view_stock', None, { 'slug': self.name })
+
+class Owned_Stock(models.Model):
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE)
+    stock = models.ForeignKey('Stock', on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    def __str__(self):
+        return self.stock

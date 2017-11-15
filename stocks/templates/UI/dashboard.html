@@ -12,17 +12,17 @@
       </div>
     </div>
       <div class="row">
-        {% for sn in s_info %}
+        {% for s in stocks %}
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-content">
               <h3 class="title">
-                {{ sn }}
+                {{ s.stock.slug }} <small> {{ s.quantity }} </small>
               </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <a href="/stocks/{{sn}}">More...</a>
+                <a href="/stocks/{{ s.stock.slug }}">More...</a>
               </div>
             </div>
           </div>
