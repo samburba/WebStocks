@@ -31,5 +31,3 @@ class Owned_Stock(models.Model):
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
     stock = models.ForeignKey('Stock', on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    def __str__(self):
-        return self.stock

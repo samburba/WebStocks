@@ -7,7 +7,7 @@ from stocks.models import Stock
 from stocks.forms import registration_form
 from stocks.stocks import Stock as S
 from decimal import Decimal
-from stocks.models import Owned_Stock
+from stocks.models import Stock
 
 # Create your views here.
 
@@ -40,27 +40,32 @@ def dashboard(request):
     return render(request, "UI/dashboard.html", context)
 
 @login_required
+def more(request):
+    context = {'stocks':Stock.objects.all()}
+    return render(request, "UI/more.html", context)
+
+@login_required
 def view_stock(request, slug):
     user = request.user
     stock = get_object_or_404(Stock, slug=slug)
+    owned = user.profile.stocks.get(stock=stock)
     info = S(stock.slug)
     s_price = info.get_price()
     errors = []
     if request.method == 'POST':
         if "Buy" in request.POST:
             if user.profile.purse >= Decimal(s_price):
-                owned = user.profile.stocks.get(stock=stock)
                 owned.quantity += 1
-                owned.save()
                 user.profile.purse -= Decimal(round(s_price, 2))
             else:
                 errors.append(user.get_username() + " does not have enough money for " + str(stock))
         elif "Sell" in request.POST:
-            if stock in user.profile.stocks.all():
-                user.profile.stocks.remove(stock)
+            if owned.quantity > 0:
+                owned.quantity -= 1
                 user.profile.purse += Decimal(round(s_price, 2))
             else:
                 errors.append(user.get_username() + " does not have stock " + str(stock))
+        owned.save()
         user.save()
         print(errors)
     context = {'s_name' : stock.slug, 's_full_name' : stock.full_name,
