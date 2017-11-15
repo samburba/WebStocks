@@ -16,6 +16,15 @@
         <h5> {{ s_full_name }} </h5>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <form action="/stocks/{{ s_name }}/" method="post">
+          {% csrf_token %}
+        <input type="submit" class="btn btn-success" value="Buy" name="Buy"/>
+        <input type="submit" class="btn btn-danger" value="Sell" name="Sell"/>
+      </form>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -36,42 +36,30 @@
           <form action="/signup/" method="post">
             {% csrf_token %}
             {{ form.errors }}
-
             <div class="field-wrap">
               <label>
                 Username<span class="req">*</span>
               </label>
                {{form.username}}
-
-              <!-- {{form.username.label_tag}} -->
             </div>
-
             <div class="field-wrap">
               <label>
                 Email Address<span class="req">*</span>
               </label>
               {{ form.email }}
-
-              <!-- {{ form.email.label_tag }} -->
-
             </div>
-
             <div class="field-wrap">
               <label>
                 Password<span class="req">*</span>
               </label>
               {{ form.password1 }}
-              <!-- {{ form.password1.label_tag }} -->
             </div>
-
             <div class="field-wrap">
               <label>
                 Retype Password<span class="req">*</span>
               </label>
               {{ form.password2 }}
-              <!-- {{ form.password2.label_tag }} -->
             </div>
-
             <input type="submit" class="button expanded" value="Register" />
           </form>
         </div>

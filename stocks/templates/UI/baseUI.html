@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="sidebar" data-color="red" data-image="{% static "images/UI/sidebar-1.jpg" %}">
+  <div class="sidebar" data-color="purple" data-image="{% static "images/UI/sidebar-1.jpg" %}">
   <div class="logo"> <p> &nbsp; </p></div>
   <div class="logo">
     <div class="card card-profile">
@@ -30,7 +30,7 @@
       </div>
       <h6 class="category text-gray">Welcome</h6>
       <h4 class="card-title">{{ user.get_username }}</h4>
-      <h4 class="card-title">Balance: ${{ user.profile.purse }} </h4>
+      <h4 class="card-title">${{ user.profile.purse }} </h4>
     </div>
   </div>
 

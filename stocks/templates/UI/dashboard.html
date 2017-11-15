@@ -7,20 +7,22 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
-        {% for s in user_stocks %}
+        <div class="col-md-12 text-center">
+        <h2>My Stocks</h2>
+      </div>
+    </div>
+      <div class="row">
+        {% for sn in s_info %}
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
-            <div class="card-header" data-background-color="orange">
-              <i class="material-icons">content_copy</i>
-            </div>
             <div class="card-content">
               <h3 class="title">
-                {{s.get_name}} : {{s.get_price}}
+                {{ sn }}
               </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <a href="">More...</a>
+                <a href="/stocks/{{sn}}">More...</a>
               </div>
             </div>
           </div>
@@ -28,9 +30,6 @@
         {% endfor %}
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
-            <div class="card-header" data-background-color="orange">
-              <i class="material-icons">content_copy</i>
-            </div>
             <div class="card-content">
               <h3 class="title">
                 <a href="">More...</a>
