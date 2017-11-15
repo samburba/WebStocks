@@ -1,0 +1,16 @@
+{% extends "UI/baseUI.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+      {% for s in stocks %}
+          <h4><a href="/stocks/{{ s.slug }}">{{ s.slug }} </a></h4><br/>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
