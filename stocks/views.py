@@ -41,7 +41,7 @@ def dashboard(request):
     for s in stocks:
         if s.quantity > 0:
             to_return_stocks.append(s)
-    context = {'stocks':to_return_stocks    }
+    context = {'stocks':to_return_stocks}
     return render(request, "UI/dashboard.html", context)
 
 @login_required
@@ -60,8 +60,10 @@ def view_stock(request, slug):
     stock = get_object_or_404(Stock, slug=slug)
     #owned = user.profile.stocks.get(stock=stock).exists():
     has_stock = False
+    quantity_owned = 0
     if user.profile.stocks.filter(stock=stock).exists():
         has_stock = True
+        quantity_owned = user.profile.stocks.get(stock=stock).quantity
     info = S(stock.slug)
     s_price = info.get_price()
     errors = []
@@ -92,12 +94,15 @@ def view_stock(request, slug):
                 errors.append(user.get_username() + " does not have stock " + str(stock))
         owned.save()
         user.save()
+        if has_stock:
+            quantity_owned = user.profile.stocks.get(stock=stock).quantity
         print(errors)
     return_comments = []
     if Comment.objects.filter(stock=stock).exists():
         return_comments = Comment.objects.filter(stock=stock)
     context = {'s_name' : stock.slug, 's_full_name' : stock.full_name,
-     's_price':s_price, 's_difference':info.get_percent_difference(), 'comments':return_comments}
+     's_price':s_price, 's_difference':info.get_percent_difference(), 'quantity_owned':quantity_owned,
+     'comments':return_comments}
     return render(request, "UI/stock.html", context)
 
 @login_required
