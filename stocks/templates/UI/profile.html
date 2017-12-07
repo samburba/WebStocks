@@ -1,0 +1,21 @@
+{% extends "UI/baseUI.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+      <table>
+        <tr>
+      {% for s in stocks %}
+          <td><a href="/stocks/{{ s.slug }}">{{ s.slug }} </a></td>
+          {% if forloop.counter|divisibleby:8 %}
+        </tr>
+            <tr>
+          {% endif %}
+        {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}

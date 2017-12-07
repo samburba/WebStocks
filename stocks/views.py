@@ -26,10 +26,6 @@ def signup(request):
             user = form.save(commit=True)
             created = user.profile
             created.purse = INITIAL_AMOUNT
-            for s in Stock.objects.all():
-                add_stock = Owned_Stock(user=created, stock=s)
-                add_stock.save()
-                created.stocks.add(add_stock)
             login(request, user)
             return redirect("dashboard")
     else:
@@ -49,6 +45,11 @@ def dashboard(request):
     return render(request, "UI/dashboard.html", context)
 
 @login_required
+def profile(request):
+    context = {}
+    return render(request, "UI/profile.html", context)
+
+@login_required
 def more(request):
     context = {'stocks':Stock.objects.all()}
     return render(request, "UI/more.html", context)
@@ -57,23 +58,36 @@ def more(request):
 def view_stock(request, slug):
     user = request.user
     stock = get_object_or_404(Stock, slug=slug)
-    owned = user.profile.stocks.get(stock=stock)
+    #owned = user.profile.stocks.get(stock=stock).exists():
+    has_stock = False
+    if user.profile.stocks.filter(stock=stock).exists():
+        has_stock = True
     info = S(stock.slug)
     s_price = info.get_price()
     errors = []
     if request.method == 'POST':
         if "Buy" in request.POST:
             if user.profile.purse >= Decimal(s_price):
+                if not has_stock:
+                    created = user.profile
+                    add_stock = Owned_Stock(user=created, stock=stock)
+                    add_stock.save()
+                    created.stocks.add(add_stock)
+                owned = user.profile.stocks.get(stock=stock)
                 owned.quantity += 1
                 user.profile.purse -= Decimal(round(s_price, 2))
                 user.profile.purse = Decimal(round(user.profile.purse,2))
             else:
                 errors.append(user.get_username() + " does not have enough money for " + str(stock))
         elif "Sell" in request.POST:
-            if owned.quantity > 0:
-                owned.quantity -= 1
-                user.profile.purse += Decimal(round(s_price, 2))
-                user.profile.purse = Decimal(round(user.profile.purse,2))
+            if has_stock:
+                owned = user.profile.stocks.get(stock=stock)
+                if owned.quantity > 0:
+                    owned.quantity -= 1
+                    user.profile.purse += Decimal(round(s_price, 2))
+                    user.profile.purse = Decimal(round(user.profile.purse,2))
+                else:
+                    errors.append(user.get_username() + " does not have stock " + str(stock))
             else:
                 errors.append(user.get_username() + " does not have stock " + str(stock))
         owned.save()
@@ -82,3 +96,12 @@ def view_stock(request, slug):
     context = {'s_name' : stock.slug, 's_full_name' : stock.full_name,
      's_price':s_price, 's_difference':info.get_percent_difference()}
     return render(request, "UI/stock.html", context)
+
+@login_required
+def comments_view(request):
+    comments = comment.objects.all().order_by('-authored')
+    toReturn = {}
+    toReturn["comments"]=[]
+    for sugg in suggestions:
+        toReturn["comments"]+=[{"comments":com.comments}]
+    return JsonResponse(toReturn)

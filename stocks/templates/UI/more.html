@@ -5,10 +5,15 @@
 
 <div class="content">
   <div class="container-fluid">
-      {% for s in stocks %}
-          <h4><a href="/stocks/{{ s.slug }}">{{ s.slug }} </a></h4><br/>
-        {% endfor %}
-    </div>
+    <table>
+      <tr>
+    {% for s in stocks %}
+      <td><a href="/stocks/{{s.slug}}">{{s.slug}}</a></td>
+       {% if forloop.counter|divisibleby:8 %}
+     </tr>
+     <tr>
+       {% endif %}
+    {% endfor %}
   </div>
 </div>
 

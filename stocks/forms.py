@@ -3,15 +3,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class registration_form(UserCreationForm):
-    email = forms.EmailField(
-        label="Email",
-        required=True
-        )
-
+    email = forms.EmailField(label="Email", required=True)
     class Meta:
         model = User
-        fields = ("username", "email",
-            "password1", "password2")
+        fields = ("username", "email", "password1", "password2")
 
     def save(self, commit=True):
         user = super(registration_form, self).save(commit=False)
@@ -35,3 +30,32 @@ class log_in_form(AuthenticationForm):
         max_length=32,
         widget=forms.PasswordInput()
         )
+# class edit_form(ModelForm):
+#     first_name = forms.CharField(required=False)
+#     last_name = forms.CharField(required=False)
+#     email = forms.EmailField(required=False)
+#     class Meta:
+#         model = User
+#         fields = ("first_name", "last_name", "email")
+#     #TODO: the rest
+    #https://stackoverflow.com/questions/22567320/django-edit-user-profile
+
+class comment_form(forms.Form):
+    comment = forms.CharField(label='Suggestion', max_length=140)
+
+    def save(self, request , commit=True):
+        com = comment()
+        com.comment = self.cleaned_data['comment']
+        suggest.author = request.user
+        if commit:
+            com.save()
+        return com
+
+class reply_form(forms.Form):
+    reply = forms.CharField(
+        label='Reply',
+        max_length=140,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Add a reply'}
+        )
+    )
