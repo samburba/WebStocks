@@ -28,6 +28,7 @@
       <h6 class="category text-gray">Welcome</h6>
       <h4 class="card-title">{{ user.get_username }}</h4>
       <h4 class="card-title">${{ user.profile.purse }} </h4>
+      <h5 class="card-title"><a href="/logout">Logout</a></h5>
     </div>
   </div>
 
@@ -46,13 +47,13 @@
         </a>
       </li>
       <li>
-        <a href="./table.html">
+        <a href="{% url 'dashboard' %}">
           <i class="material-icons">content_paste</i>
           <p>My Portfolio</p>
         </a>
       </li>
       <li>
-        <a href="./typography.html">
+        <a href="{% url 'leaderboard' %}">
           <i class="material-icons">library_books</i>
           <p>Leaderboard</p>
         </a>

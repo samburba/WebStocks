@@ -37,7 +37,9 @@
     </div>
     <ul class="text-center">
       {% for comment in comments %}
-      <li> {{ comment.text }} </li>
+      <li>
+        {{ comment.text }}<br>
+      <small> By {{ comment.author }} on {{ comment.authored }}</small> </li>
       {% empty %}
       <p> No comments yet</p>
       {% endfor %}

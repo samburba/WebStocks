@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.template import RequestContext
 from stocks.models import Stock, Owned_Stock, Comment
@@ -8,6 +9,7 @@ from stocks.forms import registration_form, comment_form
 from stocks.stocks import Stock as S
 from decimal import Decimal
 from stocks.models import Stock
+from operator import attrgetter
 
 # Create your views here.
 
@@ -43,6 +45,14 @@ def dashboard(request):
             to_return_stocks.append(s)
     context = {'stocks':to_return_stocks}
     return render(request, "UI/dashboard.html", context)
+
+@login_required
+def leaderboard(request):
+    users = User.objects.all()
+    highest_to_lowest = []
+    users_sorted = sorted(users, key=attrgetter('profile.purse'))
+    context = {"users" : users_sorted[::-1]}
+    return render(request, "UI/leaderboard.html", context)
 
 @login_required
 def profile(request):

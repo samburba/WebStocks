@@ -45,4 +45,4 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     authored = models.DateTimeField(auto_now=True)
     def __str__(self):
-        return self.comment
+        return self.stock.slug + " : " + self.text
