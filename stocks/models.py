@@ -6,9 +6,11 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #stocks = models.ManyToManyField('stocks.Stock', related_name='stock+', blank=True)
     stocks = models.ManyToManyField('Owned_Stock', related_name='stocks', blank=True)
+    #stocks = models.ManyToManyField('Owned_Stock', related_name='stocks', blank=True)
     purse = models.DecimalField(max_digits=64, decimal_places=2, blank=True, null=True)
+    def __str__(self):
+       return self.user.get_username()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -21,13 +23,17 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Stock(models.Model):
     slug = models.SlugField(max_length=5)
-    full_name = models.CharField(max_length=64)
-    bio = models.CharField(max_length=1024, null=True)
+    full_name = models.CharField(max_length=64, blank=True)
+    bio = models.CharField(max_length=1024, null=True, blank=True)
     @permalink
     def get_absolute_url(self):
         return ('view_stock', None, { 'slug': self.name })
+    def __str__(self):
+       return self.slug
 
 class Owned_Stock(models.Model):
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
     stock = models.ForeignKey('Stock', on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=0)
+    def __str__(self):
+       return self.user.user.get_username() + " : " + self.stock.slug

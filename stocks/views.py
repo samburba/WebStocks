@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.template import RequestContext
-from stocks.models import Stock
+from stocks.models import Stock, Owned_Stock
 from stocks.forms import registration_form
 from stocks.stocks import Stock as S
 from decimal import Decimal
@@ -24,7 +24,12 @@ def signup(request):
         form = registration_form(request.POST)
         if form.is_valid():
             user = form.save(commit=True)
-            user.profile.purse = INITIAL_AMOUNT
+            created = user.profile
+            created.purse = INITIAL_AMOUNT
+            for s in Stock.objects.all():
+                add_stock = Owned_Stock(user=created, stock=s)
+                add_stock.save()
+                created.stocks.add(add_stock)
             login(request, user)
             return redirect("dashboard")
     else:
@@ -35,8 +40,12 @@ def signup(request):
 @login_required
 def dashboard(request):
     user = request.user
-    #for s in user.profile.stocks.all():
-    context = {'stocks':user.profile.stocks.all()}
+    stocks = user.profile.stocks.all()
+    to_return_stocks = []
+    for s in stocks:
+        if s.quantity > 0:
+            to_return_stocks.append(s)
+    context = {'stocks':to_return_stocks    }
     return render(request, "UI/dashboard.html", context)
 
 @login_required
@@ -57,12 +66,14 @@ def view_stock(request, slug):
             if user.profile.purse >= Decimal(s_price):
                 owned.quantity += 1
                 user.profile.purse -= Decimal(round(s_price, 2))
+                user.profile.purse = Decimal(round(user.profile.purse,2))
             else:
                 errors.append(user.get_username() + " does not have enough money for " + str(stock))
         elif "Sell" in request.POST:
             if owned.quantity > 0:
                 owned.quantity -= 1
                 user.profile.purse += Decimal(round(s_price, 2))
+                user.profile.purse = Decimal(round(user.profile.purse,2))
             else:
                 errors.append(user.get_username() + " does not have stock " + str(stock))
         owned.save()
