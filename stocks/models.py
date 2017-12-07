@@ -39,19 +39,10 @@ class Owned_Stock(models.Model):
        return self.user.user.get_username() + " : " + self.stock.slug
 
 #Comments on stocks
-class Comments(models.Model):
-    comment = models.CharField(max_length=141)
+class Comment(models.Model):
+    stock = models.ForeignKey('Stock', related_name='stock')
+    text = models.CharField(max_length=141)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     authored = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.comment
-
-#Replies to Comments on stocks
-class Replies(models.Model):
-    reply = models.CharField(max_length=141)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment = models.ForeignKey(Comments, on_delete=models.CASCADE)
-    authored = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return self.comment

@@ -8,7 +8,9 @@ urlpatterns = [
         url(r'^dashboard/', views.dashboard, name='dashboard'),
         url(r'^profile/', views.profile, name='profile'),
         url(r'^more/', views.more, name='more'),
+        url(r'^stocks/(?P<slug>[^\.]+)/comment/$', views.add_comment_to_stock, name='add_comment_to_stock'),
         url(r'^stocks/(?P<slug>[^\.]+)/$', views.view_stock, name='view_stocks'),
-        url(r'^comment/(?P<comment_id>[0-9]+)/$', views.comments_view, name='comment'),
+        # url(r'^comment/(?P<comment_id>[0-9]+)/$', views.comments_view, name='comment'),
+
         url(r'^$', views.index, name='index'),
     ]

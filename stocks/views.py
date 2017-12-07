@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.template import RequestContext
-from stocks.models import Stock, Owned_Stock
-from stocks.forms import registration_form
+from stocks.models import Stock, Owned_Stock, Comment
+from stocks.forms import registration_form, comment_form
 from stocks.stocks import Stock as S
 from decimal import Decimal
 from stocks.models import Stock
@@ -93,15 +93,24 @@ def view_stock(request, slug):
         owned.save()
         user.save()
         print(errors)
+    return_comments = []
+    if Comment.objects.filter(stock=stock).exists():
+        return_comments = Comment.objects.filter(stock=stock)
     context = {'s_name' : stock.slug, 's_full_name' : stock.full_name,
-     's_price':s_price, 's_difference':info.get_percent_difference()}
+     's_price':s_price, 's_difference':info.get_percent_difference(), 'comments':return_comments}
     return render(request, "UI/stock.html", context)
 
 @login_required
-def comments_view(request):
-    comments = comment.objects.all().order_by('-authored')
-    toReturn = {}
-    toReturn["comments"]=[]
-    for sugg in suggestions:
-        toReturn["comments"]+=[{"comments":com.comments}]
-    return JsonResponse(toReturn)
+def add_comment_to_stock(request, slug):
+    stock = get_object_or_404(Stock, slug=slug)
+    if request.method == "POST":
+        form = comment_form(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.stock = stock
+            comment.author = request.user
+            comment.save()
+            return redirect('/dashboard')
+    else:
+        form = comment_form()
+    return render(request, 'UI/add_comment_to_stock.html', {'form': form})

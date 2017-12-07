@@ -20,11 +20,24 @@
       <div class="col-md-12 text-center">
         <form action="/stocks/{{ s_name }}/" method="post">
           {% csrf_token %}
-        <input type="submit" class="btn btn-success" value="Buy" name="Buy"/>
-        <input type="submit" class="btn btn-danger" value="Sell" name="Sell"/>
-      </form>
+          <input type="submit" class="btn btn-success" value="Buy" name="Buy"/>
+          <input type="submit" class="btn btn-danger" value="Sell" name="Sell"/>
+        </form>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3> Comments</h3>
+      </div>
+    </div>
+    <a class="btn btn-default" href="{% url 'add_comment_to_stock' slug=s_name %}">Add comment</a>
+    <ul>
+      {% for comment in comments %}
+      <li> {{ comment.text }} </li>
+      {% empty %}
+      <p> No comments yet</p>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 

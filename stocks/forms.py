@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from .models import Comment
 
 class registration_form(UserCreationForm):
     email = forms.EmailField(label="Email", required=True)
@@ -40,22 +41,27 @@ class log_in_form(AuthenticationForm):
 #     #TODO: the rest
     #https://stackoverflow.com/questions/22567320/django-edit-user-profile
 
-class comment_form(forms.Form):
-    comment = forms.CharField(label='Suggestion', max_length=140)
+# class comment_form(forms.Form):
+#     comment = forms.CharField(label='Suggestion', max_length=140)
+#
+#     def save(self, request , commit=True):
+#         com = comment()
+#         com.comment = self.cleaned_data['comment']
+#         suggest.author = request.user
+#         if commit:
+#             com.save()
+#         return com
+#
+# class reply_form(forms.Form):
+#     reply = forms.CharField(
+#         label='Reply',
+#         max_length=140,
+#         widget=forms.TextInput(
+#             attrs={'placeholder': 'Add a reply'}
+#         )
+#     )
 
-    def save(self, request , commit=True):
-        com = comment()
-        com.comment = self.cleaned_data['comment']
-        suggest.author = request.user
-        if commit:
-            com.save()
-        return com
-
-class reply_form(forms.Form):
-    reply = forms.CharField(
-        label='Reply',
-        max_length=140,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Add a reply'}
-        )
-    )
+class comment_form(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('text',)
