@@ -115,7 +115,7 @@ def add_comment_to_stock(request, slug):
             comment.stock = stock
             comment.author = request.user
             comment.save()
-            return redirect('/dashboard')
+            return redirect('/stocks/' +  slug)
     else:
         form = comment_form()
     return render(request, 'UI/add_comment_to_stock.html', {'form': form})

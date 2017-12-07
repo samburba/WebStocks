@@ -35,14 +35,14 @@
         <h3> Comments</h3>
       </div>
     </div>
-    <a class="btn btn-default" href="{% url 'add_comment_to_stock' slug=s_name %}">Add comment</a>
-    <ul>
+    <ul class="text-center">
       {% for comment in comments %}
       <li> {{ comment.text }} </li>
       {% empty %}
       <p> No comments yet</p>
       {% endfor %}
     </ul>
+        <a class="btn btn-block text-center" href="{% url 'add_comment_to_stock' slug=s_name %}">Add comment</a>
   </div>
 </div>
 
