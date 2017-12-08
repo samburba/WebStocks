@@ -43,8 +43,7 @@ class Owned_Stock(models.Model):
 
 #Comments on stocks
 class Comment(models.Model):
-    #stock = models.ForeignKey('Stock', related_name='stock')
-    stock = models.ForeignKey('Stock', on_delete=models.CASCADE)
+    stock = models.ForeignKey('Stock', related_name='stock')
     text = models.CharField(max_length=141)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     authored = models.DateTimeField(auto_now=True)

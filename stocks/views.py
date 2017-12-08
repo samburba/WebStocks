@@ -1,3 +1,4 @@
+#necessary:
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -9,7 +10,12 @@ from stocks.forms import registration_form, comment_form
 from stocks.stocks import Stock as S
 from decimal import Decimal
 from stocks.models import Stock
+#something from stack overflow:
 from operator import attrgetter
+#the AI :
+from stocks.ai_viterbi import Viterbi
+from stocks.ai_config import states, initial, trans, emiss, possible_obs
+#necessary for the AI:
 
 # Create your views here.
 
@@ -64,6 +70,8 @@ def notfound(request):
     context = {}
     return render(request, "UI/notfound.html", context)
 
+
+@login_required
 def portfolio(request):
     user = request.user
     stocks = user.profile.stocks.all()
@@ -73,6 +81,35 @@ def portfolio(request):
     total_evaluation = user.profile.purse + evaluation
     context = {"user":user, "stocks":stocks, "evaluation":evaluation, "total_evaluation":total_evaluation}
     return render(request, "UI/portfolio.html", context)
+
+@login_required
+def advisor(request):
+    context = {"prediction":"Error", "error":True}
+    if request.method == 'POST':
+        if "Go" in request.POST and "Ticker" in request.POST:
+                stock_name = request.POST["Ticker"]
+                stock = S(stock_name)
+                hist_prices = stock.get_week_prices()
+                #Set up the VITERBI
+                if hist_prices is not "Error":
+                    obs = []
+                    obs_prices = []
+                    obs_delta = []
+                    prev_price = hist_prices["Adj Close"][0]
+                    for price in hist_prices["Adj Close"]:
+                        if price >= prev_price:
+                            obs.append("Up")
+                        else:
+                            obs.append("Down")
+                        obs_prices.append(price)
+                        obs_delta.append(price - prev_price)
+                        prev_price = price
+                    v = Viterbi(initial, states, obs, possible_obs, trans, emiss)
+                    v.run()
+                    backtrack = v.get_backtrack()
+                    prediction = backtrack[-1]
+                    context = {"stock":stock_name, "prediction":prediction.lower(), "error":False}
+    return render(request, "UI/advisor.html", context)
 
 @login_required
 def more(request):
