@@ -3,9 +3,73 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 
+<div class="wrapper">
+  <div class="sidebar" data-color="deepgreen" data-image="{% static "images/UI/sidebar-1.jpg" %}">
+  <div class="logo"> <p> &nbsp; </p></div>
+  <div class="logo">
+    <div class="card card-profile">
+      <div class="card-avatar">
+        <a href="#pablo">
+          <img class="img" src="{% static "images/UI/faces/default.jpg" %}" />
+        </a>
+      </div>
+      <h6 class="category text-gray">Welcome</h6>
+      <h4 class="card-title">{{ user.get_username }}</h4>
+      <h4 class="card-title">${{ user.profile.purse }} </h4>
+      <h5 class="card-title"><a href="/logout">Logout</a></h5>
+    </div>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li>
+        <a href="{% url 'dashboard'%}">
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'profile'%}">
+          <i class="material-icons">person</i>
+          <p>User Profile</p>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'portfolio' %}">
+          <i class="material-icons">content_paste</i>
+          <p>My Portfolio</p>
+        </a>
+      </li>
+      <li class="active">
+        <a href="{% url 'leaderboard' %}">
+          <i class="material-icons">library_books</i>
+          <p>Leaderboard</p>
+        </a>
+      </li>
+      <li >
+        <a href="{% url 'notfound' %}">
+          <i class="material-icons">notifications</i>
+          <p>DO NOT CLICK</p>
+        </a>
+      </li>
+    </ul>
+    </div>
+  </div>
+
+
+
 <div class="content">
-  <div class="container-fluid">
-    <h3> Leaderboard </h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header" data-background-color="deepgreen">
+                        <h4 class="title">Leaderboard</h4>
+                        <p class="category">Ranking is base of Balance for now</p>
+                    </div>
+                    <div class="card-content table-responsive">
+
+
       <table class="table table-striped">
         <thead>
           <tr>

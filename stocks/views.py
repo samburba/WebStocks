@@ -59,6 +59,11 @@ def profile(request):
     context = {}
     return render(request, "UI/profile.html", context)
 
+@login_required
+def notfound(request):
+    context = {}
+    return render(request, "UI/notfound.html", context)
+
 def portfolio(request):
     user = request.user
     stocks = user.profile.stocks.all()

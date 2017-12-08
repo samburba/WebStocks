@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="sidebar" data-color="purple" data-image="{% static "images/UI/sidebar-1.jpg" %}">
+  <div class="sidebar" data-color="deepgreen" data-image="{% static "images/UI/sidebar-1.jpg" %}">
   <div class="logo"> <p> &nbsp; </p></div>
   <div class="logo">
     <div class="card card-profile">
@@ -34,7 +34,7 @@
 
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="active">
+      <li>
         <a href="{% url 'dashboard'%}">
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
@@ -59,50 +59,16 @@
         </a>
       </li>
     </ul>
+    </div>
   </div>
-</div>
+
 
 <div class="main-panel">
+  <div class="content">
 
   {% block content %}{% endblock %}
 
-  <footer class="footer">
-    <div class="container-fluid">
-      <nav class="pull-left">
-        <ul>
-          <!-- <li>
-            <a href="#">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Company
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Portfolio
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Blog
-            </a>
-          </li> -->
-        </ul>
-      </nav>
-      <p class="copyright pull-right">
-        &copy;
-        <script>
-        document.write(new Date().getFullYear())
-        </script>
-        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-        <br>
-        Modified by Sam and Long
-      </p>
-    </div>
-  </footer>
+
 </div>
 
 
