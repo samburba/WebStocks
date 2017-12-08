@@ -3,17 +3,78 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 
+<div class="wrapper">
+  <div class="sidebar" data-color="deepgreen" data-image="{% static "images/UI/sidebar-1.jpg" %}">
+  <div class="logo"> <p> &nbsp; </p></div>
+  <div class="logo">
+    <div class="card card-profile">
+      <div class="card-avatar">
+        <a href="#pablo">
+          <img class="img" src="{% static "images/UI/faces/default.jpg" %}" />
+        </a>
+      </div>
+      <h6 class="category text-gray">Welcome</h6>
+      <h4 class="card-title">{{ user.get_username }}</h4>
+      <h4 class="card-title">${{ user.profile.purse }} </h4>
+      <h5 class="card-title"><a href="/logout">Logout</a></h5>
+    </div>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li>
+        <a href="{% url 'dashboard'%}">
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li class="active">
+        <a href="{% url 'advisor' %}">
+          <i class="material-icons">person</i>
+          <p>AI Advisor</p>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'portfolio' %}">
+          <i class="material-icons">content_paste</i>
+          <p>My Portfolio</p>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'leaderboard' %}">
+          <i class="material-icons">library_books</i>
+          <p>Leaderboard</p>
+        </a>
+      </li>
+    </ul>
+    </div>
+  </div>
+
+
+  <div class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header" data-background-color="blue">
+                          <h1 class="title">Smile AI Advisor</h1>
+                          <p> Enter stock name to get Advice from AI </p>
+                      </div>
+                      <div class="card-content table-responsive">
+
+
 <div class="content">
   <div class="container-fluid">
     <form action="/advisor/" method="post">
+
       {% csrf_token %}
-      <input type="text" value="Ticker" name="Ticker">
-      <input type="submit" class="btn btn-lrg" value="Get Advice" name="Go"/>
+      <input type="text" name="Ticker">
+      <input type="submit" class="btn btn-white" value="Get Advice" name="Go"/>
       {% if error %}
           <!-- <h4>There was an error with the advisor. Please try again. </h4> -->
       {% else %}
           <h3> {{stock}}  </h3>
-        <h4> The AI advisor suggests that you should {{prediction}}. </h4>
+          <h3 > The AI advisor suggests that you should  <big><span class ="text-info" > {{prediction}} </span> </big>  </h3>
       {% endif %}
     </form>
   </div>

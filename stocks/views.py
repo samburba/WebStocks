@@ -197,4 +197,5 @@ def add_comment_to_stock(request, slug):
             return redirect('/stocks/' +  slug)
     else:
         form = comment_form()
-    return render(request, 'UI/add_comment_to_stock.html', {'form': form})
+    context = {'form': form, 's_full_name' : stock.full_name, 's_name' : stock.slug}
+    return render(request, 'UI/add_comment_to_stock.html', context )
