@@ -56,7 +56,7 @@ def dashboard(request):
 def leaderboard(request):
     users = User.objects.all()
     highest_to_lowest = []
-    users_sorted = sorted(users, key=attrgetter('profile.estimated_net'))
+    users_sorted = sorted(users, key=attrgetter('profile.purse'))
     context = {"users" : users_sorted[::-1]}
     return render(request, "UI/leaderboard.html", context)
 
@@ -147,6 +147,7 @@ def view_stock(request, slug):
                 owned.purchase_price = Decimal(round(s_price, 2))
                 user.profile.purse -= Decimal(round(s_price, 2))
                 user.profile.purse = Decimal(round(user.profile.purse,2))
+                owned.save()
             else:
                 errors.append(user.get_username() + " does not have enough money for " + str(stock))
         #if user is selling
@@ -158,11 +159,11 @@ def view_stock(request, slug):
                     owned.quantity -= 1
                     user.profile.purse += Decimal(round(s_price, 2))
                     user.profile.purse = Decimal(round(user.profile.purse,2))
+                    owned.save()
                 else:
                     errors.append(user.get_username() + " does not have stock " + str(stock))
             else:
                 errors.append(user.get_username() + " does not have stock " + str(stock))
-        owned.save()
         user.save()
 
         if has_stock:
