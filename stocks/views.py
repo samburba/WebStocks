@@ -121,16 +121,19 @@ def view_stock(request, slug):
             else:
                 errors.append(user.get_username() + " does not have stock " + str(stock))
         owned.save()
-        stocks = user.profile.stocks.all()
-        evaluation = 0
-        for s in stocks:
-            evaluation += s.purchase_price
-        total_evaluation = user.profile.purse + evaluation
-        user.estimated_net = total_evaluation
         user.save()
+
         if has_stock:
             quantity_owned = user.profile.stocks.get(stock=stock).quantity
         print(errors)
+    stocks = user.profile.stocks.all()
+    evaluation = 0
+    for s in stocks:
+            evaluation += s.purchase_price
+    total_evaluation = user.profile.purse + evaluation
+    user.estimated_net = total_evaluation
+    user.save()
+    print(user.estimated_net)
     return_comments = []
     if Comment.objects.filter(stock=stock).exists():
         return_comments = Comment.objects.filter(stock=stock)
