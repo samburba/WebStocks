@@ -9,6 +9,7 @@ class Profile(models.Model):
     stocks = models.ManyToManyField('Owned_Stock', related_name='stocks', blank=True)
     #stocks = models.ManyToManyField('Owned_Stock', related_name='stocks', blank=True)
     purse = models.DecimalField(max_digits=64, decimal_places=2, blank=True, null=True)
+    estimated_net = models.DecimalField(max_digits=64, decimal_places=2, null=True, default=1000)
     def __str__(self):
        return self.user.get_username()
 

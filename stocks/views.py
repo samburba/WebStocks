@@ -50,7 +50,7 @@ def dashboard(request):
 def leaderboard(request):
     users = User.objects.all()
     highest_to_lowest = []
-    users_sorted = sorted(users, key=attrgetter('profile.purse'))
+    users_sorted = sorted(users, key=attrgetter('profile.estimated_net'))
     context = {"users" : users_sorted[::-1]}
     return render(request, "UI/leaderboard.html", context)
 
@@ -87,9 +87,13 @@ def view_stock(request, slug):
     info = S(stock.slug)
     s_price = info.get_price()
     errors = []
+    #Buying and Selling stocks
     if request.method == 'POST':
+        #If user is buying
         if "Buy" in request.POST:
+            #If the user has enough money
             if user.profile.purse >= Decimal(s_price):
+                #If they do not have the stock, put it in Owned_Stock
                 if not has_stock:
                     created = user.profile
                     add_stock = Owned_Stock(user=created, stock=stock)
@@ -103,7 +107,9 @@ def view_stock(request, slug):
                 user.profile.purse = Decimal(round(user.profile.purse,2))
             else:
                 errors.append(user.get_username() + " does not have enough money for " + str(stock))
+        #if user is selling
         elif "Sell" in request.POST:
+            #make sure they have the stock and own more than 0
             if has_stock:
                 owned = user.profile.stocks.get(stock=stock)
                 if owned.quantity > 0:
@@ -115,6 +121,12 @@ def view_stock(request, slug):
             else:
                 errors.append(user.get_username() + " does not have stock " + str(stock))
         owned.save()
+        stocks = user.profile.stocks.all()
+        evaluation = 0
+        for s in stocks:
+            evaluation += s.purchase_price
+        total_evaluation = user.profile.purse + evaluation
+        user.estimated_net = total_evaluation
         user.save()
         if has_stock:
             quantity_owned = user.profile.stocks.get(stock=stock).quantity

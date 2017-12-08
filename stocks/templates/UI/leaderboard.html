@@ -11,6 +11,7 @@
           <tr>
             <th> Rank </th>
             <th> Name </th>
+            <th> Estimated Net </th>
             <th> Balance </th>
           </tr>
         </thead>
@@ -19,6 +20,7 @@
         <tr>
           <td> {{ forloop.counter }}</td>
           <td>{{ u.get_username }}</td>
+          <td>${{ u.profile.estimated_net }}
           <td>${{ u.profile.purse }}</td>
         </tr>
         {% endfor %}
