@@ -873,7 +873,8 @@ a.menu-toggle {
  */
 
 #intro {
-	background: #14181E url(../images/intro-bg.jpg) no-repeat center;
+	/*background: #14181E url(../images/intro-bg.jpg) no-repeat center;*/
+	background: #202020 center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -1078,7 +1079,8 @@ a.menu-toggle {
 .process-content .image-part {
 	margin: 0 auto;
 	height: 660px;
-	background-image: url("../images/appdesign.jpg");
+	/*background-image: url("../images/appdesign.jpg");*/
+	background-color: black;
 	background-repeat: no-repeat;
 	background-position: center;
 	-webkit-background-size: contain;
@@ -1116,7 +1118,8 @@ a.menu-toggle {
  */
 
 #features {
-	background: #090909 url(../images/features-bg.jpg) no-repeat center;
+	/*background: #090909 url(../images/features-bg.jpg) no-repeat center;*/
+	background: #202020;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -1681,7 +1684,8 @@ footer ul li {
  */
 
 #loginsection {
-	background: #14181E url(../images/intro-bg.jpg) no-repeat center;
+	/*background: #14181E url(../images/intro-bg.jpg) no-repeat center;*/
+	background: #14181E;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
