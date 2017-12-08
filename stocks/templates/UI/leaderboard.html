@@ -1,0 +1,31 @@
+{% extends "UI/baseUI.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+    <h3> Leaderboard </h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th> Rank </th>
+            <th> Name </th>
+            <th> Balance </th>
+          </tr>
+        </thead>
+        <tbody>
+      {% for u in users %}
+        <tr>
+          <td> {{ forloop.counter }}</td>
+          <td>{{ u.get_username }}</td>
+          <td>${{ u.profile.purse }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}

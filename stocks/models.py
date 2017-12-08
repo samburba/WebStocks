@@ -35,6 +35,8 @@ class Owned_Stock(models.Model):
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
     stock = models.ForeignKey('Stock', on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
+    purchase_price = models.DecimalField(max_digits=64, decimal_places=2, null=True)
+    purchased_date = models.DateTimeField(auto_now=True)
     def __str__(self):
        return self.user.user.get_username() + " : " + self.stock.slug
 

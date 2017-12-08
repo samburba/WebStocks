@@ -59,16 +59,26 @@ def profile(request):
     context = {}
     return render(request, "UI/profile.html", context)
 
+def portfolio(request):
+    user = request.user
+    stocks = user.profile.stocks.all()
+    evaluation = 0
+    for s in stocks:
+        evaluation += s.purchase_price
+    total_evaluation = user.profile.purse + evaluation
+    context = {"user":user, "stocks":stocks, "evaluation":evaluation, "total_evaluation":total_evaluation}
+    return render(request, "UI/portfolio.html", context)
+
 @login_required
 def more(request):
     context = {'stocks':Stock.objects.all()}
     return render(request, "UI/more.html", context)
 
+#TODO: when the stock is 0 delete it from the user's Owned_Stock
 @login_required
 def view_stock(request, slug):
     user = request.user
     stock = get_object_or_404(Stock, slug=slug)
-    #owned = user.profile.stocks.get(stock=stock).exists():
     has_stock = False
     quantity_owned = 0
     if user.profile.stocks.filter(stock=stock).exists():
@@ -85,8 +95,10 @@ def view_stock(request, slug):
                     add_stock = Owned_Stock(user=created, stock=stock)
                     add_stock.save()
                     created.stocks.add(add_stock)
+                    has_stock = True
                 owned = user.profile.stocks.get(stock=stock)
                 owned.quantity += 1
+                owned.purchase_price = Decimal(round(s_price, 2))
                 user.profile.purse -= Decimal(round(s_price, 2))
                 user.profile.purse = Decimal(round(user.profile.purse,2))
             else:

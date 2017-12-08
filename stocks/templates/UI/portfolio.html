@@ -1,0 +1,35 @@
+{% extends "UI/baseUI.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+    <h4>{{user.get_username}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h5>${{user.profile.purse}}</h5>
+  </div>
+</div>
+    <ul class="text-center">
+    {% for s in stocks %}
+      {% if s.quantity is not 0 %}
+        <li><h5><a href="/stocks/{{s.stock.slug}}">{{s.stock.slug}}</a> &nbsp; <small>{{s.quantity}}</small> &nbsp; - &nbsp; Last Purchased for ${{s.purchase_price}} on {{s.purchased_date}}</h5></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h5> You have an estimated ${{ evaluation }} in stock holdings (calculated from last purchase price). </h5>
+      <h5> Your net value is estimated at ${{ total_evaluation }}. </h5>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+{% endblock %}
