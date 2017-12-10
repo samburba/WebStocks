@@ -10,6 +10,7 @@
 	python manage.py migrate
 	python manage.py runserver
 ```
+The server will now be running at 127.0.0.1:8000.
 ### TO ADD STOCKS TO THE DATABASE:
 **This is a manual process, be warned!**
 * Open up the contents of */stocks/stock\_uploader.py* and copy the contents.
