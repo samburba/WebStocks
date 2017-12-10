@@ -17,5 +17,5 @@
 * Run the command.
 Now all the stocks are in the database.
 
-The website can be seen at [stock-sim.com](http://stock-sim.com)
+#### The website can be seen at [stock-sim.com](http://stock-sim.com)
 
