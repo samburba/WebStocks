@@ -1,7 +1,7 @@
 # stock-sim
 ### By Sam Burba and Long Nguyen
 
-### To install and run:
+### TO INSTALL AND RUN:
  ```bash
 	virtualenv -p python3 env
 	source env/bin/activate
